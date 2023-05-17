@@ -28,14 +28,14 @@ public class iFRIEND {
             // Handle any exceptions.
         }
     }
-    public static void extendArray() {
-        int[] tempidArray=new int[idArray.length+1];
-        for (int i = 0; i < idArray.length; i++){
-            tempidArray[i]=idArray[i];
-        }
-        idArray=tempidArray;
-    }
 
+    public static void extendArray() {
+        int[] tempidArray = new int[idArray.length + 1];
+        for (int i = 0; i < idArray.length; i++) {
+            tempidArray[i] = idArray[i];
+        }
+        idArray = tempidArray;
+    }
 
 
     public static void loadHomepage() {
@@ -100,11 +100,14 @@ public class iFRIEND {
     }
 
     private static void addcontact() {
+        Scanner input = new Scanner(System.in);
         addcontactTitle();
 
-        int num=idArray.length+1;
-        int temp=num;
+
+        int id = idArray.length + 1;
+        int temp = id;
         int count = 0;
+        String name = "";
 
         while (temp != 0) {
             temp = temp / 10;
@@ -112,28 +115,47 @@ public class iFRIEND {
         }
 
         if (count == 1) {
-            System.out.println(" C00" + num);
+            System.out.println(" C00" + id);
         } else if (count == 2) {
-            System.out.println(" C0" + num);
+            System.out.println(" C0" + id);
         } else {
-            System.out.println(" C" + num);
+            System.out.println(" C" + id);
         }
+
+        while (true)
+
+
+            if (searchid(id) >= 0) {
+
+                System.out.println(id + " The id already exists");
+            } else {
+                System.out.print("Enter Name  :");
+                name = input.nextLine();
+                break;
+
+            }
+
+
         extendArray();
 
-        idArray[idArray.length-1]=num;
+        idArray[idArray.length - 1] = id;
 
-        System.out.println(idArray[0]);
+        loadHomepage();
 
 
     }
 
 
 
-
-
+    public static int searchid(int id) {
+        for (int i = 0; i < idArray.length; i++) {
+            if (idArray[i] == id) {
+                return (i);
+            }
+        }
+        return -1;
+    }
 }
-
-
 
 
 
