@@ -5,7 +5,7 @@ public class iFRIEND {
     public static int[] idArray = new int[0];
     public static int[] nameArray = new int[0];
     public static int[] phoneNumberArray = new int[0];
-    public static int[] companyArray = new int[0];
+    public static int[] companyNameArray = new int[0];
     public static int[] salaryArray = new int[0];
     public static int[] birthdayArray = new int[0];
 
@@ -31,10 +31,22 @@ public class iFRIEND {
 
     public static void extendArray() {
         int[] tempidArray = new int[idArray.length + 1];
+        int[] tempnameArray = new int[nameArray.length + 1];
+        int[] tempphoneNumberArray = new int[phoneNumberArray.length + 1];
+        int[] tempcompanyNameArray = new int[companyNameArray.length + 1];
+
         for (int i = 0; i < idArray.length; i++) {
+
             tempidArray[i] = idArray[i];
+            tempnameArray[i]=nameArray[i];
+            tempphoneNumberArray[i]=phoneNumberArray[i];
+            tempcompanyNameArray[i]=companyNameArray[i];
+
         }
         idArray = tempidArray;
+        nameArray=tempnameArray;
+        phoneNumberArray=tempphoneNumberArray;
+        companyNameArray=tempcompanyNameArray;
     }
 
 
@@ -108,6 +120,8 @@ public class iFRIEND {
         int temp = id;
         int count = 0;
         String name = "";
+        String companyName="";
+        int salary=0;
 
         while (temp != 0) {
             temp = temp / 10;
@@ -122,27 +136,75 @@ public class iFRIEND {
             System.out.println(" C" + id);
         }
 
-        while (true)
+
 
 
             if (searchid(id) >= 0) {
 
                 System.out.println(id + " The id already exists");
             } else {
-                System.out.print("Enter Name  :");
+                System.out.print("Name       :");
                 name = input.nextLine();
-                break;
+            }
+        while (true) {
+            System.out.print("PhoneNumber  :");
+            String phoneNumber = input.nextLine();
+
+            if (phoneNumber.startsWith("0") & phoneNumber.length()==10){
+                System.out.println("Company Name  :");
+                companyName = input.nextLine();
+                System.out.println("Salary  :");
+                salary = input.nextInt();
+                while (true){
+                    if (salary>0){
+
+
+
+                    }
+
+
+
+
+                }
+
+
+
+            } else {
+                System.out.println("Invalid phone Number ...");
+
+                System.out.print("Do you want to add phone number again (Y/N) :");
+
+                String exitoption = input.nextLine();
+
+                if (exitoption.equalsIgnoreCase("Y")) {
+                    clearConsole();
+                    continue;
+
+
+                } else {
+                    exitoption.equalsIgnoreCase("N");
+                    clearConsole();
+                    loadHomepage();
+
+                }
+
+
 
             }
 
 
-        extendArray();
-
-        idArray[idArray.length - 1] = id;
-
-        loadHomepage();
 
 
+
+            extendArray();
+
+            idArray[idArray.length - 1] = id;
+
+
+            loadHomepage();
+
+
+        }
     }
 
 
