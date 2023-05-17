@@ -153,17 +153,20 @@ public class iFRIEND {
             if (phoneNumber.startsWith("0") & phoneNumber.length()==10){
                 System.out.println("Company Name  :");
                 companyName = input.nextLine();
+
+               L1: while (true){
                 System.out.println("Salary  :");
                 salary = input.nextInt();
-                while (true){
+
                     if (salary>0){
+                        System.out.println("Birthday   :");
 
 
+
+                    }else {
+                        continue L1;
 
                     }
-
-
-
 
                 }
 
