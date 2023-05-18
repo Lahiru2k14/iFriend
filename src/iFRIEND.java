@@ -1,13 +1,16 @@
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class iFRIEND {
 
-    public static int[] idArray = new int[0];
-    public static int[] nameArray = new int[0];
-    public static int[] phoneNumberArray = new int[0];
-    public static int[] companyNameArray = new int[0];
+    public static String[] idArray = new String[0];
+    public static String[] nameArray = new String[0];
+    public static String[] phoneNumberArray = new String[0];
+    public static String[] companyNameArray = new String[0];
     public static int[] salaryArray = new int[0];
-    public static int[] birthdayArray = new int[0];
+    public static String[] birthdayArray = new String[0];
 
 
     public static void main(String[] args) {
@@ -30,23 +33,38 @@ public class iFRIEND {
     }
 
     public static void extendArray() {
-        int[] tempidArray = new int[idArray.length + 1];
-        int[] tempnameArray = new int[nameArray.length + 1];
-        int[] tempphoneNumberArray = new int[phoneNumberArray.length + 1];
-        int[] tempcompanyNameArray = new int[companyNameArray.length + 1];
+        String[] tempidArray = new String[idArray.length + 1];
+        String[] tempnameArray = new String[nameArray.length + 1];
+        String[] tempphoneNumberArray = new String[phoneNumberArray.length + 1];
+        String[] tempcompanyNameArray = new String[companyNameArray.length + 1];
+        int[] tempsalaryArray = new int[salaryArray.length + 1];
+        String[] tempbirthdayArray = new String[birthdayArray.length + 1];
 
         for (int i = 0; i < idArray.length; i++) {
 
             tempidArray[i] = idArray[i];
-            tempnameArray[i]=nameArray[i];
-            tempphoneNumberArray[i]=phoneNumberArray[i];
-            tempcompanyNameArray[i]=companyNameArray[i];
+            tempnameArray[i] = nameArray[i];
+            tempphoneNumberArray[i] = phoneNumberArray[i];
+            tempcompanyNameArray[i] = companyNameArray[i];
+            tempsalaryArray[i] = salaryArray[i];
+            tempbirthdayArray[i] = birthdayArray[i];
 
         }
         idArray = tempidArray;
-        nameArray=tempnameArray;
-        phoneNumberArray=tempphoneNumberArray;
-        companyNameArray=tempcompanyNameArray;
+        nameArray = tempnameArray;
+        phoneNumberArray = tempphoneNumberArray;
+        companyNameArray = tempcompanyNameArray;
+        salaryArray = tempsalaryArray;
+        birthdayArray = tempbirthdayArray;
+    }
+
+    public static int searchid(String id) {
+        for (int i = 0; i < idArray.length; i++) {
+            if (idArray[i] == id) {
+                return (i);
+            }
+        }
+        return -1;
     }
 
 
@@ -120,8 +138,11 @@ public class iFRIEND {
         int temp = id;
         int count = 0;
         String name = "";
-        String companyName="";
-        int salary=0;
+        String companyName = "";
+        int salary = 0;
+        String birthday = "";
+        String phoneNumber="";
+
 
         while (temp != 0) {
             temp = temp / 10;
@@ -137,39 +158,121 @@ public class iFRIEND {
         }
 
 
+        if (searchid(String.valueOf(id)) >= 0) {
 
-
-            if (searchid(id) >= 0) {
-
-                System.out.println(id + " The id already exists");
-            } else {
-                System.out.print("Name       :");
-                name = input.nextLine();
-            }
+            System.out.println(id + " The id already exists");
+        } else {
+            System.out.print("Name       :");
+            name = input.nextLine();
+        }
         while (true) {
-            System.out.print("PhoneNumber  :");
-            String phoneNumber = input.nextLine();
 
-            if (phoneNumber.startsWith("0") & phoneNumber.length()==10){
+            System.out.print("PhoneNumber  :");
+            phoneNumber = input.nextLine();
+
+            if (phoneNumber.startsWith("0") & phoneNumber.length() == 10) {
                 System.out.println("Company Name  :");
                 companyName = input.nextLine();
-
-               L1: while (true){
-                System.out.println("Salary  :");
-                salary = input.nextInt();
-
-                    if (salary>0){
-                        System.out.println("Birthday   :");
+                L1:
+                while (true) {
+                    System.out.println("Salary  :");
+                    salary = input.nextInt();
 
 
+                    if (salary > 0) {
+                        Scanner input2 = new Scanner(System.in);
 
-                    }else {
-                        continue L1;
+                        while (true) {
+
+                            System.out.println("B'Day(YYYY-MM-DD)':");
+                            SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
+                            LocalDate currentDate = LocalDate.now();
+
+                            birthday = input2.nextLine();
+
+                            try {
+                                LocalDate userDate = LocalDate.parse(birthday);
+
+                                System.out.println("Current date:" + currentDate);
+                                System.out.println("user date:" + userDate);
+
+                                if (userDate.compareTo(currentDate) > 0) {
+                                    System.out.println("The date you entered is in the future.");
+                                    System.out.print("Do you want to add birthday again (Y/N) :");
+
+                                    String exitoption = input2.nextLine();
+
+                                    if (exitoption.equalsIgnoreCase("Y")) {
+                                        clearConsole();
+                                        continue;
+                                    } else {
+                                        exitoption.equalsIgnoreCase("N");
+                                        clearConsole();
+                                        loadHomepage();
+                                    }
+
+
+                                } else if (userDate.compareTo(currentDate) < 0) {
+                                    System.out.println("Contact has been added successfully...");
+
+                                    extendArray();
+
+                                    idArray[idArray.length - 1] = String.valueOf(id);
+                                    System.out.println("index"+Arrays.toString(idArray));
+                                    nameArray[nameArray.length-1]=name;
+                                    phoneNumberArray[phoneNumberArray.length-1]=phoneNumber;
+                                    companyNameArray[companyNameArray.length-1]=companyName;
+                                    salaryArray[salaryArray.length-1]=salary;
+                                    birthdayArray[birthdayArray.length-1]=birthday;
+
+
+
+
+
+                                    System.out.print("Do you want to add another contact (Y/N) :");
+
+                                    String exitoption = input2.nextLine();
+
+                                    if (exitoption.equalsIgnoreCase("Y")) {
+                                        clearConsole();
+                                        addcontact();
+                                    } else {
+                                        exitoption.equalsIgnoreCase("N");
+                                        clearConsole();
+                                        loadHomepage();
+                                    }
+
+
+                                } else {
+                                    System.out.println("The date you entered is today!");
+                                    System.out.print("Do you want to add birthday again (Y/N) :");
+
+                                    String exitoption = input2.nextLine();
+
+                                    if (exitoption.equalsIgnoreCase("Y")) {
+                                        clearConsole();
+                                        continue;
+                                    } else {
+                                        exitoption.equalsIgnoreCase("N");
+                                        clearConsole();
+                                        loadHomepage();
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                                System.out.println("Invalid date format. Please try again.");
+
+                            }
+                        }
+
+
+                    } else {
+                        System.out.println("Invalid input....");
+
 
                     }
 
                 }
-
 
 
             } else {
@@ -192,35 +295,26 @@ public class iFRIEND {
                 }
 
 
-
             }
 
 
 
-
-
-            extendArray();
-
-            idArray[idArray.length - 1] = id;
-
-
-            loadHomepage();
-
-
         }
+
+
     }
 
-
-
-    public static int searchid(int id) {
-        for (int i = 0; i < idArray.length; i++) {
-            if (idArray[i] == id) {
-                return (i);
-            }
-        }
-        return -1;
-    }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
