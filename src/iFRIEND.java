@@ -69,9 +69,27 @@ public class iFRIEND {
 
 
     public static void loadHomepage() {
+        System.out.println("\n");
 
-        System.out.println("iFried");
-        System.out.println("Contact Organizer");
+        System.out.println("           /$$ /$$$$$$$$/$$$$$$$  /$$$$$$ /$$$$$$$$ /$$   /$$ /$$$$$$$         ");
+        System.out.println("            |__/| $$____/| $$__  $$|_  $$_/| $$_____/| $$$ | $$| $$__  $$       ");
+        System.out.println("             /$$| $$     | $$  \\ $$  | $$  | $$      | $$$$| $$| $$  \\ $$     ");
+        System.out.println("            | $$| $$$$$  | $$$$$$$/  | $$  | $$$$$$  | $$ $$ $$| $$  | $$       ");
+        System.out.println("            | $$| $$__/  | $$__  $$  | $$  | $$___/  | $$  $$$$| $$  | $$       ");
+        System.out.println("            | $$| $$     | $$  \\ $$  | $$  | $$      | $$\\  $$$| $$  | $$     ");
+        System.out.println("            | $$| $$     | $$  | $$ /$$$$$$| $$$$$$$$| $$ \\  $$| $$$$$$$/      ");
+        System.out.println("            |__/|__/     |__/  |__/|______/|________/|__/  \\__/|_______/       ");
+        System.out.println("\n");
+        System.out.println("   _____            _             _          ____                       _                                ");
+        System.out.println("  / ____|          | |           | |       /  __  \\                    (_)                                       ");
+        System.out.println(" | |     ___  _ _  | |_ __ _   __| |_ ___  | |  | |_ _ _  _  __ _ _ _   _ _______ _ __                                                     ");
+        System.out.println(" | |    / _ \\| '_ \\| __/ _' |/ __| __/ __| | |  | | '_/'_| |/ _' | '_ \\| |_  / _ \\ ' _|                                                     ");
+        System.out.println(" | |___| (_) | | | | || |_| | |__| |_\\__ \\ | |__| | | | |_ | |_| | | | | |/ /  __/ |                                                        ");
+        System.out.println("  \\_____\\___/|_| |_|\\__\\__,_|\\___|/__|___/  \\____/|_|  \\_, |\\__,_|_| |_|_/___\\___\\_|                                                                        ");
+        System.out.println("                                                        _/ |                                              ");
+        System.out.println("                                                       |__/                                                    ");
+
+
         System.out.println("============================================================================================");
 
         System.out.println("\n");
@@ -125,8 +143,8 @@ public class iFRIEND {
     public static void addcontactTitle() {
 
         System.out.println("+------------------------------------------------------------------------------------------+");
-        System.out.println(" |                             ADD Contact to the List                                      |");
-        System.out.println(" +------------------------------------------------------------------------------------------+");
+        System.out.println("|                             ADD Contact to the List                                      |");
+        System.out.println("+------------------------------------------------------------------------------------------+");
     }
 
     private static void addcontact() {
@@ -143,28 +161,29 @@ public class iFRIEND {
         String id = "";
         for (int i = idArray.length+1; i < idArray.length+2; i++) {
             id = String.format("C%04d", i);
-            System.out.println(id);
+            System.out.println(" "+id);
         }
+        System.out.println(" =======");
 
 
         if (searchid(String.valueOf(id)) >= 0) {
 
             System.out.println(id + " The id already exists");
         } else {
-            System.out.print("Name       :");
+            System.out.print(" Name                :");
             name = input.nextLine();
         }
         while (true) {
 
-            System.out.print("PhoneNumber  :");
+            System.out.print(" PhoneNumber         :");
             phoneNumber = input.nextLine();
 
             if (phoneNumber.startsWith("0") & phoneNumber.length() == 10) {
-                System.out.println("Company Name  :");
+                System.out.print(" Company Name        :");
                 companyName = input.nextLine();
                 L1:
                 while (true) {
-                    System.out.println("Salary  :");
+                    System.out.print(" Salary              :");
                     salary = input.nextInt();
 
 
@@ -173,7 +192,7 @@ public class iFRIEND {
 
                         while (true) {
 
-                            System.out.println("B'Day(YYYY-MM-DD)':");
+                            System.out.print(" B'Day(YYYY-MM-DD)'  :");
                             SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
                             LocalDate currentDate = LocalDate.now();
 
@@ -181,9 +200,6 @@ public class iFRIEND {
 
                             try {
                                 LocalDate userDate = LocalDate.parse(birthday);
-
-                                System.out.println("Current date:" + currentDate);
-                                System.out.println("user date:" + userDate);
 
                                 if (userDate.compareTo(currentDate) > 0) {
                                     System.out.println("The date you entered is in the future.");
@@ -202,7 +218,7 @@ public class iFRIEND {
 
 
                                 } else if (userDate.compareTo(currentDate) < 0) {
-                                    System.out.println("Contact has been added successfully...");
+                                    System.out.println("        Contact has been added successfully...");
 
                                     extendArray();
 
@@ -223,7 +239,7 @@ public class iFRIEND {
 
 
 
-                                    System.out.print("Do you want to add another contact (Y/N) :");
+                                    System.out.print(" Do you want to add another contact (Y/N) :");
 
                                     String exitoption = input2.nextLine();
 
@@ -238,8 +254,8 @@ public class iFRIEND {
 
 
                                 } else {
-                                    System.out.println("The date you entered is today!");
-                                    System.out.print("Do you want to add birthday again (Y/N) :");
+                                    System.out.println("  The date you entered is today!");
+                                    System.out.print(" Do you want to add birthday again (Y/N) :");
 
                                     String exitoption = input2.nextLine();
 
@@ -254,14 +270,14 @@ public class iFRIEND {
                                 }
 
                             } catch (Exception e) {
-                                System.out.println("Invalid date format. Please try again.");
+                                System.out.println(" Invalid date format. Please try again.");
 
                             }
                         }
 
 
                     } else {
-                        System.out.println("Invalid input....");
+                        System.out.println(" Invalid input....");
 
 
                     }
@@ -270,9 +286,9 @@ public class iFRIEND {
 
 
             } else {
-                System.out.println("Invalid phone Number ...");
+                System.out.println(" Invalid phone Number ...");
 
-                System.out.print("Do you want to add phone number again (Y/N) :");
+                System.out.print(" Do you want to add phone number again (Y/N) :");
 
                 String exitoption = input.nextLine();
 
