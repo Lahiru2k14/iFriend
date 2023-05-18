@@ -133,28 +133,17 @@ public class iFRIEND {
         Scanner input = new Scanner(System.in);
         addcontactTitle();
 
-
-        int id = idArray.length + 1;
-        int temp = id;
-        int count = 0;
         String name = "";
         String companyName = "";
         int salary = 0;
         String birthday = "";
-        String phoneNumber="";
+        String phoneNumber = "";
 
 
-        while (temp != 0) {
-            temp = temp / 10;
-            count++;
-        }
-
-        if (count == 1) {
-            System.out.println(" C00" + id);
-        } else if (count == 2) {
-            System.out.println(" C0" + id);
-        } else {
-            System.out.println(" C" + id);
+        String id = "";
+        for (int i = idArray.length+1; i < idArray.length+2; i++) {
+            id = String.format("C%04d", i);
+            System.out.println(id);
         }
 
 
@@ -218,12 +207,17 @@ public class iFRIEND {
                                     extendArray();
 
                                     idArray[idArray.length - 1] = String.valueOf(id);
-                                    System.out.println("index"+Arrays.toString(idArray));
+                                    System.out.println("id index"+Arrays.toString(idArray));
                                     nameArray[nameArray.length-1]=name;
+                                    System.out.println("name index"+Arrays.toString(nameArray));
                                     phoneNumberArray[phoneNumberArray.length-1]=phoneNumber;
+                                    System.out.println("ph num index"+Arrays.toString(phoneNumberArray));
                                     companyNameArray[companyNameArray.length-1]=companyName;
+                                    System.out.println("c name index"+Arrays.toString(companyNameArray));
                                     salaryArray[salaryArray.length-1]=salary;
+                                    System.out.println("salary index"+Arrays.toString(salaryArray));
                                     birthdayArray[birthdayArray.length-1]=birthday;
+                                    System.out.println("birthday index"+Arrays.toString(birthdayArray));
 
 
 
