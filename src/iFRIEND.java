@@ -1,3 +1,4 @@
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -5,12 +6,12 @@ import java.util.Scanner;
 
 public class iFRIEND {
 
-    public static String[] idArray ={"C0001"};
-    public static String[] nameArray ={"lahiru"};
-    public static String[] phoneNumberArray ={"0717751284"};
-    public static String[] companyNameArray = {"ICET"};
-    public static int[] salaryArray = {25000};
-    public static String[] birthdayArray = {"1994-02-14"};
+    public static String[] idArray ={"C0001","C0002","C0003"};
+    public static String[] nameArray ={"lahiru","niroth","kaushi"};
+    public static String[] phoneNumberArray ={"0717751284","0777751284","0787751284"};
+    public static String[] companyNameArray = {"ICBT","IJSE","ICET"};
+    public static int[] salaryArray = {25000,50000,75000};
+    public static String[] birthdayArray = {"1994-02-14","1995-02-14","1996-02-14"};
 
 
     public static void main(String[] args) {
@@ -125,14 +126,14 @@ public class iFRIEND {
                 clearConsole();
                 deleteContact();
                 break;
-//            case 4:
-//                clearConsole();
-//                ssclTax();
-//                break;
-//            case 5:
-//                clearConsole();
-//                leasingPayment();
-//                break;
+            case 4:
+                clearConsole();
+                searchContact();
+                break;
+            case 5:
+                clearConsole();
+                sortContact();
+                break;
             case 6:
                 clearConsole();
 
@@ -545,7 +546,7 @@ public class iFRIEND {
 
 
                 System.out.print(" Do you want to delete this contact (Y/N) :");
-                System.out.println();
+
 
                 String exitoption1 = input.nextLine();
 
@@ -591,15 +592,17 @@ public class iFRIEND {
                     System.out.println("\n");
                     System.out.print(" Do you want to delete another Contact (Y/N) :");
 
-                    String exitoption2 = input.nextLine();
+                    Scanner input3=new Scanner(System.in);
 
-                    if (exitoption1.equalsIgnoreCase("Y")) {
+                    String exitoption3 = input3.nextLine();
+
+                    if (exitoption3.equalsIgnoreCase("Y")) {
 
                         clearConsole();
                         deleteContact();
 
                     } else {
-                        exitoption1.equalsIgnoreCase("N");
+                        exitoption3.equalsIgnoreCase("N");
                         clearConsole();
                         loadHomepage();
                     }
@@ -632,7 +635,219 @@ public class iFRIEND {
             }
         }
     }
+    public static void searchContactTitle() {
+        System.out.println("+------------------------------------------------------------------------------------------+");
+        System.out.println("|                                   Search Contact                                         |");
+        System.out.println("+------------------------------------------------------------------------------------------+");
 
+    }
+    public static void searchContact() {
+        searchContactTitle();
+
+        while (true) {
+            System.out.print(" Search Contact by Name or Phone Number -");
+            Scanner input = new Scanner(System.in);
+            String searchContact = input.nextLine();
+
+            int index1 = searchName(searchContact);
+
+            int index2 = searchPhoneNumber(searchContact);
+
+
+            int max = 0;
+
+
+            if (index1 >= 0 || index2 >= 0) {
+
+                if (index1 > max) {
+                    max = index1;
+                }
+                if (index2 > max) {
+                    max = index2;
+                }
+
+                System.out.println("   Contact ID       :" + idArray[max]);
+                System.out.println("   Name             :" + nameArray[max]);
+                System.out.println("   Phone Number     :" + phoneNumberArray[max]);
+                System.out.println("   Company Name     :" + companyNameArray[max]);
+                System.out.println("   Salary           :" + salaryArray[max]);
+                System.out.println("   B'Day(YYYY-MM-DD):" + birthdayArray[max]);
+
+
+                System.out.print(" Do you want to Search another contact (Y/N) :");
+
+
+                String exitoption1 = input.nextLine();
+
+                if (exitoption1.equalsIgnoreCase("Y")) {
+                    clearConsole();
+                    searchContact();
+
+                } else {
+                    exitoption1.equalsIgnoreCase("N");
+                    clearConsole();
+                    loadHomepage();
+                }
+            }else {
+                System.out.print("    No contact found for " +searchContact+"....");
+                System.out.println("\n");
+                System.out.print(" Do you want to Search another contact (Y/N) :");
+
+                String exitoption2 = input.nextLine();
+
+                if (exitoption2.equalsIgnoreCase("Y")) {
+
+                    clearConsole();
+                    searchContact();
+
+                } else {
+                    exitoption2.equalsIgnoreCase("N");
+                    clearConsole();
+                    loadHomepage();
+                }
+
+
+            }
+        }
+    }
+    private static void sortContactTitle() {
+        System.out.println("+------------------------------------------------------------------------------------------+");
+        System.out.println("|                                     Sort Contact                                         |");
+        System.out.println("+------------------------------------------------------------------------------------------+");
+
+    }
+    public static void sortContact() {
+
+        sortContactTitle();
+        System.out.println();
+
+        System.out.println("     [01] Sorting by Name");
+        System.out.println();
+        System.out.println("     [02] Sorting by Salary");
+        System.out.println();
+        System.out.println("     [03] Sorting by Birthday");
+
+        System.out.println("\n");
+
+        System.out.print(" Enter an option to continue ->");
+        Scanner input=new Scanner(System.in);
+        int sortingNumber=input.nextInt();
+
+        switch (sortingNumber){
+
+            case 1:
+                clearConsole();
+                sortingName();
+                break;
+//            case 2:
+//                clearConsole();
+//                updateContact();
+//                break;
+//            case 3:
+//                clearConsole();
+//                deleteContact();
+//                break;
+
+        }
+
+
+    }
+
+    public static void sortingName() {
+        System.out.println();
+
+        System.out.println("                    +------------------------------------+");
+        System.out.println("                    |        List Contact by name        |");
+        System.out.println("                    +------------------------------------+");
+
+        System.out.println("\t");
+
+
+        String tempnameArray="";
+        String tempidArray="";
+        String tempphoneNumber="";
+        String tempcompanyNameArray="";
+        int tempsalaryArray=0;
+        String tempbirthdayArray="";
+
+
+
+
+
+        for (int i = 0; i < nameArray.length; i++) {
+            for (int j = i + 1; j < nameArray.length; j++) {
+
+                // to compare one string with other strings
+                if (nameArray[i].compareTo(nameArray[j]) > 0) {
+                    // swapping
+                    tempnameArray = nameArray[i];
+                    tempidArray=idArray[i];
+                    tempphoneNumber=phoneNumberArray[i];
+                    tempcompanyNameArray=companyNameArray[i];
+                    tempsalaryArray=salaryArray[i];
+                    tempbirthdayArray=birthdayArray[i];
+
+
+                    nameArray[i] = nameArray[j];
+                    idArray[i]=idArray[j];
+                    phoneNumberArray[i]=phoneNumberArray[j];
+                    companyNameArray[i]=companyNameArray[j];
+                    salaryArray[i]=salaryArray[j];
+                    birthdayArray[i]=birthdayArray[j];
+
+
+                    nameArray[j] = tempnameArray;
+                    idArray[j]=tempidArray;
+                    phoneNumberArray[j]=tempphoneNumber;
+                    companyNameArray[j]=tempcompanyNameArray;
+                    salaryArray[j]=tempsalaryArray;
+                    birthdayArray[j]=tempbirthdayArray;
+
+
+
+
+
+
+
+                }
+            }
+        }
+
+        // print output array
+        System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
+        System.out.println();
+        System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","| Contact ID |","       Name       |","     Phone Number     |","     Company    |","      Salary     |","      Birthday     |");
+        System.out.println();
+        System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
+        System.out.println();
+
+        for (int i = 0; i < nameArray.length; i++) {
+
+            System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i],"|"+birthdayArray[i],"|");
+            System.out.println();
+
+        }
+        System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
+        System.out.println("\n");
+
+        System.out.println(" Do you want to go to Home page  (Y/N):");
+
+        Scanner input=new Scanner(System.in);
+
+        String exitoption = input.nextLine();
+
+        if (exitoption.equalsIgnoreCase("Y")) {
+
+            clearConsole();
+            loadHomepage();
+
+        } else {
+            exitoption.equalsIgnoreCase("N");
+            clearConsole();
+            sortContact();
+        }
+
+    }
 
 
     public static int searchPhoneNumber(String searchContact) {
