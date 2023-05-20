@@ -544,30 +544,91 @@ public class iFRIEND {
                 System.out.println("   B'Day(YYYY-MM-DD):" + birthdayArray[max]);
 
 
-            }
+                System.out.print(" Do you want to delete this contact (Y/N) :");
+                System.out.println();
 
-            System.out.println(" What do you want to delete this contact (Y/N) :");
+                String exitoption1 = input.nextLine();
 
-            String exitoption1 = input.nextLine();
+                if (exitoption1.equalsIgnoreCase("Y")) {
 
-            if (exitoption1.equalsIgnoreCase("Y")) {
-
-
-
-
-
-
-
-
-
-
+                    int size = idArray.length;
+                    for (int i = max; i < size - 1; i++) {
+                        idArray[i] = idArray[i + 1];
+                        nameArray[i] = nameArray[i + 1];
+                        phoneNumberArray[i] = phoneNumberArray[i + 1];
+                        companyNameArray[i] = companyNameArray[i + 1];
+                        salaryArray[i] = salaryArray[i + 1];
+                        birthdayArray[i] = birthdayArray[i + 1];
 
 
+                    }
+                    String[] tempidArray = new String[size - 1];
+                    String[] tempnameArray = new String[size - 1];
+                    String[] tempphoneNumberArray = new String[size - 1];
+                    String[] tempcompanyNameArray = new String[size - 1];
+                    int[] tempsalaryArray = new int[size - 1];
+                    String[] tempbirthdayArray = new String[size - 1];
 
-            } else {
-                exitoption1.equalsIgnoreCase("N");
-                clearConsole();
-                loadHomepage();
+
+                    for (int i = 0; i < size - 1; i++) {
+                        tempidArray[i] = idArray[i];
+                        tempnameArray[i] = nameArray[i];
+                        tempphoneNumberArray[i] = phoneNumberArray[i];
+                        tempcompanyNameArray[i] = nameArray[i];
+                        tempsalaryArray[i] = salaryArray[i];
+                        tempbirthdayArray[i] = birthdayArray[i];
+
+                    }
+                    idArray = tempidArray;
+                    nameArray = tempnameArray;
+                    phoneNumberArray = tempphoneNumberArray;
+                    companyNameArray = tempcompanyNameArray;
+                    salaryArray = tempsalaryArray;
+                    birthdayArray = tempbirthdayArray;
+
+
+                    System.out.print("    Customer has been deleted successfully...");
+                    System.out.println("\n");
+                    System.out.print(" Do you want to delete another Contact (Y/N) :");
+
+                    String exitoption2 = input.nextLine();
+
+                    if (exitoption1.equalsIgnoreCase("Y")) {
+
+                        clearConsole();
+                        deleteContact();
+
+                    } else {
+                        exitoption1.equalsIgnoreCase("N");
+                        clearConsole();
+                        loadHomepage();
+                    }
+
+
+                } else {
+                    exitoption1.equalsIgnoreCase("N");
+                    clearConsole();
+                    loadHomepage();
+                }
+            }else {
+                System.out.print("    Customer not in Contact...");
+                System.out.println("\n");
+                System.out.print(" Do you want to delete another Contact (Y/N) :");
+
+                String exitoption2 = input.nextLine();
+
+                if (exitoption2.equalsIgnoreCase("Y")) {
+
+                    clearConsole();
+                    deleteContact();
+
+                } else {
+                    exitoption2.equalsIgnoreCase("N");
+                    clearConsole();
+                    loadHomepage();
+                }
+
+
             }
         }
     }
