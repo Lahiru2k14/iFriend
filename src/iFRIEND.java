@@ -10,8 +10,8 @@ public class iFRIEND {
     public static String[] nameArray ={"lahiru","niroth","kaushi"};
     public static String[] phoneNumberArray ={"0717751284","0777751284","0787751284"};
     public static String[] companyNameArray = {"ICBT","IJSE","ICET"};
-    public static int[] salaryArray = {25000,50000,75000};
-    public static String[] birthdayArray = {"1994-02-14","1995-02-14","1996-02-14"};
+    public static int[] salaryArray = {85000,50000,75000};
+    public static String[] birthdayArray = {"1994-02-14","1991-02-14","1996-02-14"};
 
 
     public static void main(String[] args) {
@@ -739,19 +739,21 @@ public class iFRIEND {
                 clearConsole();
                 sortingName();
                 break;
-//            case 2:
-//                clearConsole();
-//                updateContact();
-//                break;
-//            case 3:
-//                clearConsole();
-//                deleteContact();
-//                break;
+            case 2:
+                clearConsole();
+                sortingSalary();
+                break;
+            case 3:
+                clearConsole();
+                sortingBirthday();
+                break;
 
         }
 
 
     }
+
+
 
     public static void sortingName() {
         System.out.println();
@@ -803,12 +805,6 @@ public class iFRIEND {
                     salaryArray[j]=tempsalaryArray;
                     birthdayArray[j]=tempbirthdayArray;
 
-
-
-
-
-
-
                 }
             }
         }
@@ -823,14 +819,14 @@ public class iFRIEND {
 
         for (int i = 0; i < nameArray.length; i++) {
 
-            System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i],"|"+birthdayArray[i],"|");
+            System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i],"|"+birthdayArray[i],"|");
             System.out.println();
 
         }
         System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
         System.out.println("\n");
 
-        System.out.println(" Do you want to go to Home page  (Y/N):");
+        System.out.print(" Do you want to go to Home page  (Y/N):");
 
         Scanner input=new Scanner(System.in);
 
@@ -848,6 +844,191 @@ public class iFRIEND {
         }
 
     }
+    public static void sortingSalary() {
+        System.out.println();
+
+        System.out.println("                    +------------------------------------+");
+        System.out.println("                    |      List Contact by Salary        |");
+        System.out.println("                    +------------------------------------+");
+
+        System.out.println("\t");
+
+
+        String tempnameArray="";
+        String tempidArray="";
+        String tempphoneNumber="";
+        String tempcompanyNameArray="";
+        int tempsalaryArray=0;
+        String tempbirthdayArray="";
+
+
+
+
+
+        for (int i = 0; i < salaryArray.length; i++) {
+            for (int j = i + 1; j < salaryArray.length; j++) {
+
+                // to compare one string with other strings
+                if (salaryArray[i]>salaryArray[j] ) {
+                    // swapping
+                    tempnameArray = nameArray[i];
+                    tempidArray=idArray[i];
+                    tempphoneNumber=phoneNumberArray[i];
+                    tempcompanyNameArray=companyNameArray[i];
+                    tempsalaryArray=salaryArray[i];
+                    tempbirthdayArray=birthdayArray[i];
+
+
+                    nameArray[i] = nameArray[j];
+                    idArray[i]=idArray[j];
+                    phoneNumberArray[i]=phoneNumberArray[j];
+                    companyNameArray[i]=companyNameArray[j];
+                    salaryArray[i]=salaryArray[j];
+                    birthdayArray[i]=birthdayArray[j];
+
+
+                    nameArray[j] = tempnameArray;
+                    idArray[j]=tempidArray;
+                    phoneNumberArray[j]=tempphoneNumber;
+                    companyNameArray[j]=tempcompanyNameArray;
+                    salaryArray[j]=tempsalaryArray;
+                    birthdayArray[j]=tempbirthdayArray;
+
+                }
+            }
+        }
+
+        // print output array
+        System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
+        System.out.println();
+        System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","| Contact ID |","       Name       |","     Phone Number     |","     Company    |","      Salary     |","      Birthday     |");
+        System.out.println();
+        System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
+        System.out.println();
+
+        for (int i = 0; i < nameArray.length; i++) {
+
+            System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i],"|"+birthdayArray[i],"|");
+            System.out.println();
+
+        }
+        System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
+        System.out.println("\n");
+
+        System.out.print(" Do you want to go to Home page  (Y/N):");
+
+        Scanner input=new Scanner(System.in);
+
+        String exitoption = input.nextLine();
+
+        if (exitoption.equalsIgnoreCase("Y")) {
+
+            clearConsole();
+            loadHomepage();
+
+        } else {
+            exitoption.equalsIgnoreCase("N");
+            clearConsole();
+            sortingSalary();
+        }
+
+    }
+    public static void sortingBirthday() {
+        System.out.println();
+
+        System.out.println("                    +------------------------------------+");
+        System.out.println("                    |     List Contact by Birthday       |");
+        System.out.println("                    +------------------------------------+");
+
+        System.out.println("\t");
+
+
+        String tempnameArray="";
+        String tempidArray="";
+        String tempphoneNumber="";
+        String tempcompanyNameArray="";
+        int tempsalaryArray=0;
+        String tempbirthdayArray="";
+
+
+
+
+
+        for (int i = 0; i < birthdayArray.length; i++) {
+            for (int j = i + 1; j < birthdayArray.length; j++) {
+
+                // to compare one string with other strings
+                if ((birthdayArray[i].compareTo(birthdayArray[j]) > 0) ) {
+                    // swapping
+                    tempnameArray = nameArray[i];
+                    tempidArray=idArray[i];
+                    tempphoneNumber=phoneNumberArray[i];
+                    tempcompanyNameArray=companyNameArray[i];
+                    tempsalaryArray=salaryArray[i];
+                    tempbirthdayArray=birthdayArray[i];
+
+
+                    nameArray[i] = nameArray[j];
+                    idArray[i]=idArray[j];
+                    phoneNumberArray[i]=phoneNumberArray[j];
+                    companyNameArray[i]=companyNameArray[j];
+                    salaryArray[i]=salaryArray[j];
+                    birthdayArray[i]=birthdayArray[j];
+
+
+                    nameArray[j] = tempnameArray;
+                    idArray[j]=tempidArray;
+                    phoneNumberArray[j]=tempphoneNumber;
+                    companyNameArray[j]=tempcompanyNameArray;
+                    salaryArray[j]=tempsalaryArray;
+                    birthdayArray[j]=tempbirthdayArray;
+
+                }
+            }
+        }
+
+        // print output array
+        System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
+        System.out.println();
+        System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","| Contact ID |","       Name       |","     Phone Number     |","     Company    |","      Salary     |","      Birthday     |");
+        System.out.println();
+        System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
+        System.out.println();
+
+        for (int i = 0; i < nameArray.length; i++) {
+
+            System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i],"|"+birthdayArray[i],"|");
+            System.out.println();
+
+        }
+        System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
+        System.out.println("\n");
+
+        System.out.print(" Do you want to go to Home page  (Y/N):");
+
+        Scanner input=new Scanner(System.in);
+
+        String exitoption = input.nextLine();
+
+        if (exitoption.equalsIgnoreCase("Y")) {
+
+            clearConsole();
+            loadHomepage();
+
+        } else {
+            exitoption.equalsIgnoreCase("N");
+            clearConsole();
+            sortingSalary();
+        }
+
+
+
+
+
+
+
+    }
+
 
 
     public static int searchPhoneNumber(String searchContact) {
