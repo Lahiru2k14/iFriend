@@ -4,15 +4,25 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 public class iFRIEND {
+
+
+//    public static String[] idArray =new String[0];
+//    public static String[] nameArray =new String[0];
+//    public static String[] phoneNumberArray =new String[0];
+//    public static String[] companyNameArray =new String[0];
+//    public static double[] salaryArray =new double[0];
+//    public static String[] birthdayArray =new String[0];
+
 
     public static String[] idArray ={"C0001","C0002","C0003"};
     public static String[] nameArray ={"lahiru","niroth","kaushi"};
     public static String[] phoneNumberArray ={"0717751284","0777751284","0787751284"};
     public static String[] companyNameArray = {"ICBT","IJSE","ICET"};
-    public static int[] salaryArray = {85000,50000,75000};
+    public static double[] salaryArray = {85000,50000,75000};
     public static String[] birthdayArray = {"1994-02-14","1991-02-14","1996-02-14"};
-
 
     public static void main(String[] args) {
 
@@ -30,7 +40,7 @@ public class iFRIEND {
             }
         } catch (final Exception e) {
             e.printStackTrace();
-            // Handle any exceptions.
+
         }
     }
 
@@ -39,7 +49,7 @@ public class iFRIEND {
         String[] tempnameArray = new String[nameArray.length + 1];
         String[] tempphoneNumberArray = new String[phoneNumberArray.length + 1];
         String[] tempcompanyNameArray = new String[companyNameArray.length + 1];
-        int[] tempsalaryArray = new int[salaryArray.length + 1];
+        double[] tempsalaryArray = new double [salaryArray.length + 1];
         String[] tempbirthdayArray = new String[birthdayArray.length + 1];
 
         for (int i = 0; i < idArray.length; i++) {
@@ -107,7 +117,7 @@ public class iFRIEND {
         System.out.println();
         System.out.println("        [06] Exit ");
         System.out.println("\n");
-        System.out.print("\t\tEnter an Option to continue ->: ");
+        System.out.print(" Enter an Option to continue ->: ");
 
         Scanner input = new Scanner(System.in);
 
@@ -135,13 +145,14 @@ public class iFRIEND {
                 sortContact();
                 break;
             case 6:
-                clearConsole();
+                exit(0);
+            default:
+                System.out.println("invalid Input , input valid option ");
+                loadHomepage();
+
 
         }
     }
-
-
-
 
     public static void addcontactTitle() {
 
@@ -153,6 +164,8 @@ public class iFRIEND {
     public static void addcontact() {
         Scanner input = new Scanner(System.in);
         addcontactTitle();
+
+        System.out.println();
 
         String name = "";
         String companyName = "";
@@ -166,6 +179,7 @@ public class iFRIEND {
             System.out.println(" "+id);
         }
         System.out.println(" =======");
+        System.out.println();
 
         if (searchid(String.valueOf(id)) >= 0) {
 
@@ -202,15 +216,18 @@ public class iFRIEND {
                                 LocalDate userDate = LocalDate.parse(birthday);
 
                                 if (userDate.compareTo(currentDate) > 0) {
-                                    System.out.println("   The date you entered is in the future.");
+                                    System.out.println();
+                                    System.out.println("         Invalid input....");
+                                    System.out.println();
                                     System.out.print(" Do you want to add birthday again (Y/N) :");
 
                                     String exitoption = input2.nextLine();
 
                                     if (exitoption.equalsIgnoreCase("Y")) {
-                                        clearConsole();
-                                        addcontactTitle();
-                                        continue;
+                                        // Move the cursor up five lines
+                                        System.out.print("\033[5A");
+                                        // Clear the lines
+                                        System.out.print("\033[0J");
                                     } else {
                                         exitoption.equalsIgnoreCase("N");
                                         clearConsole();
@@ -218,23 +235,25 @@ public class iFRIEND {
                                     }
 
                                 } else if (userDate.compareTo(currentDate) < 0) {
+                                    System.out.println();
                                     System.out.println("        Contact has been added successfully...");
 
                                     extendArray();
 
                                     idArray[idArray.length - 1] = String.valueOf(id);
-                                    System.out.println("id index"+Arrays.toString(idArray));
+//                                    System.out.println("id index"+Arrays.toString(idArray));
                                     nameArray[nameArray.length-1]=name;
-                                    System.out.println("name index"+Arrays.toString(nameArray));
+//                                    System.out.println("name index"+Arrays.toString(nameArray));
                                     phoneNumberArray[phoneNumberArray.length-1]=phoneNumber;
-                                    System.out.println("ph num index"+Arrays.toString(phoneNumberArray));
+//                                    System.out.println("ph num index"+Arrays.toString(phoneNumberArray));
                                     companyNameArray[companyNameArray.length-1]=companyName;
-                                    System.out.println("c name index"+Arrays.toString(companyNameArray));
+//                                    System.out.println("c name index"+Arrays.toString(companyNameArray));
                                     salaryArray[salaryArray.length-1]=salary;
-                                    System.out.println("salary index"+Arrays.toString(salaryArray));
+//                                    System.out.println("salary index"+Arrays.toString(salaryArray));
                                     birthdayArray[birthdayArray.length-1]=birthday;
-                                    System.out.println("birthday index"+Arrays.toString(birthdayArray));
+//                                    System.out.println("birthday index"+Arrays.toString(birthdayArray));
 
+                                    System.out.println();
 
                                     System.out.print(" Do you want to add another contact (Y/N) :");
 
@@ -250,15 +269,18 @@ public class iFRIEND {
                                     }
 
                                 } else {
-                                    System.out.println("  The date you entered is today");
+                                    System.out.println();
+                                    System.out.println("         Invalid input....");
+                                    System.out.println();
                                     System.out.print(" Do you want to add birthday again (Y/N) :");
 
                                     String exitoption = input2.nextLine();
 
                                     if (exitoption.equalsIgnoreCase("Y")) {
-                                        clearConsole();
-                                        addcontactTitle();
-                                        continue;
+                                        // Move the cursor up five lines
+                                        System.out.print("\033[5A");
+                                        // Clear the lines
+                                        System.out.print("\033[0J");
                                     } else {
                                         exitoption.equalsIgnoreCase("N");
                                         clearConsole();
@@ -267,22 +289,42 @@ public class iFRIEND {
                                 }
 
                             } catch (Exception e) {
-                                System.out.println(" Invalid date format. Please try again.");
+                                System.out.println();
+                                System.out.println("     Invalid date format....");
+                                System.out.println();
+                                System.out.print(" Do you want to add birthday again (Y/N) :");
+
+                                String exitoption = input2.nextLine();
+
+                                if (exitoption.equalsIgnoreCase("Y")) {
+                                    // Move the cursor up five lines
+                                    System.out.print("\033[5A");
+                                    // Clear the lines
+                                    System.out.print("\033[0J");
+                                } else {
+                                    exitoption.equalsIgnoreCase("N");
+                                    clearConsole();
+                                    loadHomepage();
+                                }
+
                             }
                         }
 
                     } else {
                         Scanner input2 = new Scanner(System.in);
-                        System.out.println(" Invalid input....");
+                        System.out.println();
+                        System.out.println("         Invalid input....");
+                        System.out.println();
 
                         System.out.print(" Do you want to add salary again (Y/N) :");
 
                         String exitoption2 = input2.nextLine();
 
                         if (exitoption2.equalsIgnoreCase("Y")) {
-                            clearConsole();
-                            addcontactTitle();
-                            continue;
+                            // Move the cursor up five lines
+                              System.out.print("\033[5A");
+                            // Clear the lines
+                            System.out.print("\033[0J");
 
                         } else {
                             exitoption2.equalsIgnoreCase("N");
@@ -294,16 +336,19 @@ public class iFRIEND {
                 }
 
             } else {
-                System.out.println("     Invalid phone Number ...");
+                System.out.println();
+                System.out.println("       Invalid phone Number ...");
+                System.out.println();
 
                 System.out.print(" Do you want to add phone number again (Y/N) :");
 
                 String exitoption = input.nextLine();
 
                 if (exitoption.equalsIgnoreCase("Y")) {
-                    clearConsole();
-                    addcontactTitle();
-                    continue;
+                    // Move the cursor up five lines
+                    System.out.print("\033[5A");
+                    // Clear the lines
+                    System.out.print("\033[0J");
 
                 } else {
                     exitoption.equalsIgnoreCase("N");
@@ -323,14 +368,18 @@ public class iFRIEND {
         System.out.println("+------------------------------------------------------------------------------------------+");
 
     }
+
     public static void updateContact() {
 
         updateContactTitle();
 
         while (true){
+            System.out.println();
             System.out.print(" Search Contact by Name or Phone Number -");
+
             Scanner input = new Scanner(System.in);
             String searchContact = input.nextLine();
+            System.out.println();
 
             int index1 = searchName(searchContact);
 
@@ -357,7 +406,8 @@ public class iFRIEND {
                 System.out.println("   B'Day(YYYY-MM-DD):" + birthdayArray[max]);
 
 
-            }
+
+            System.out.println("\n");
 
             System.out.println(" What do you want to update ....");
             System.out.println();
@@ -371,7 +421,7 @@ public class iFRIEND {
             int num = input.nextInt();
 
             // Move the cursor up five lines
-            System.out.print("\033[6A");
+            System.out.print("\033[8A");
             // Clear the lines
             System.out.print("\033[0J");
 
@@ -382,6 +432,7 @@ public class iFRIEND {
                     System.out.println("\n");
                     System.out.println(" Update Name");
                     System.out.println(" ===================");
+                    System.out.println();
                     System.out.print(" Input new Name -");
 
                     Scanner input2 = new Scanner(System.in);
@@ -392,7 +443,10 @@ public class iFRIEND {
 
                     System.out.println(Arrays.toString(nameArray));
 
-                    System.out.println(" Contact has been update successfully..");
+                    System.out.println();
+
+                    System.out.println("      Contact has been update successfully..");
+                    System.out.println();
 
                     System.out.print(" Do you want to update another contact (Y/N) :");
 
@@ -400,8 +454,7 @@ public class iFRIEND {
 
                     if (exitoption1.equalsIgnoreCase("Y")) {
                         clearConsole();
-                        updateContactTitle();
-                        continue;
+                        updateContact();
                     } else {
                         exitoption1.equalsIgnoreCase("N");
                         clearConsole();
@@ -412,17 +465,20 @@ public class iFRIEND {
                     System.out.println("\n");
                     System.out.println(" Update Phone Number");
                     System.out.println(" =====================");
+                    System.out.println();
                     System.out.print(" Input new Phone Number -");
 
-                    Scanner input2= new Scanner(System.in);
+                    Scanner input2 = new Scanner(System.in);
 
                     String newPhoneNumber = input2.nextLine();
 
                     phoneNumberArray[max] = newPhoneNumber;
 
                     System.out.println(Arrays.toString(phoneNumberArray));
+                    System.out.println();
 
-                    System.out.println(" Contact has been update successfully..");
+                    System.out.println("         Contact has been update successfully..");
+                    System.out.println();
 
                     System.out.print(" Do you want to update another contact (Y/N) :");
 
@@ -430,8 +486,7 @@ public class iFRIEND {
 
                     if (exitoption1.equalsIgnoreCase("Y")) {
                         clearConsole();
-                        updateContactTitle();
-                        continue;
+                        updateContact();
                     } else {
                         exitoption1.equalsIgnoreCase("N");
                         clearConsole();
@@ -442,6 +497,7 @@ public class iFRIEND {
                     System.out.println("\n");
                     System.out.println(" Update Company name");
                     System.out.println(" =====================");
+                    System.out.println();
                     System.out.print(" Input new Company Name -");
 
                     Scanner input2 = new Scanner(System.in);
@@ -451,8 +507,10 @@ public class iFRIEND {
                     companyNameArray[max] = newCompanyName;
 
                     System.out.println(Arrays.toString(companyNameArray));
+                    System.out.println();
 
-                    System.out.println(" Contact has been update successfully..");
+                    System.out.println("      Contact has been update successfully..");
+                    System.out.println();
 
                     System.out.print(" Do you want to update another contact (Y/N) :");
 
@@ -460,8 +518,7 @@ public class iFRIEND {
 
                     if (exitoption1.equalsIgnoreCase("Y")) {
                         clearConsole();
-                        updateContactTitle();
-                        continue;
+                        updateContact();
                     } else {
                         exitoption1.equalsIgnoreCase("N");
                         clearConsole();
@@ -472,6 +529,7 @@ public class iFRIEND {
                     System.out.println("\n");
                     System.out.println(" Update Salary");
                     System.out.println(" =====================");
+                    System.out.println();
                     System.out.print(" Input New Salary -");
 
                     Scanner input2 = new Scanner(System.in);
@@ -481,8 +539,11 @@ public class iFRIEND {
                     salaryArray[max] = newSalary;
 
                     System.out.println(Arrays.toString(salaryArray));
+                    System.out.println();
 
-                    System.out.println(" Contact has been update successfully..");
+                    System.out.println("     Contact has been update successfully..");
+
+                    System.out.println();
 
                     System.out.print(" Do you want to update another contact (Y/N) :");
 
@@ -500,10 +561,33 @@ public class iFRIEND {
                     }
 
                 }
+            }
+
+            }else {
+                System.out.println();
+                System.out.println("       Invalid Name or Phone number...");
+                System.out.println();
+
+                System.out.print(" Do you want to Search contact again (Y/N) :");
+
+                String exitoption = input.nextLine();
+
+                if (exitoption.equalsIgnoreCase("Y")) {
+                    // Move the cursor up five lines
+                    System.out.print("\033[8A");
+                    // Clear the lines
+                    System.out.print("\033[0J");
+
+                } else {
+                    exitoption.equalsIgnoreCase("N");
+                    clearConsole();
+                    loadHomepage();
+                }
 
             }
         }
     }
+
     private static void deleteContactTitle() {
         System.out.println("+------------------------------------------------------------------------------------------+");
         System.out.println("|                                   Delete Contact                                         |");
@@ -516,6 +600,7 @@ public class iFRIEND {
         deleteContactTitle();
 
         while (true) {
+            System.out.println();
             System.out.print(" Search Contact by Name or Phone Number -");
             Scanner input = new Scanner(System.in);
             String searchContact = input.nextLine();
@@ -523,6 +608,8 @@ public class iFRIEND {
             int index1 = searchName(searchContact);
 
             int index2 = searchPhoneNumber(searchContact);
+
+            System.out.println();
 
 
             int max = 0;
@@ -543,6 +630,8 @@ public class iFRIEND {
                 System.out.println("   Company Name     :" + companyNameArray[max]);
                 System.out.println("   Salary           :" + salaryArray[max]);
                 System.out.println("   B'Day(YYYY-MM-DD):" + birthdayArray[max]);
+
+                System.out.println();
 
 
                 System.out.print(" Do you want to delete this contact (Y/N) :");
@@ -561,13 +650,12 @@ public class iFRIEND {
                         salaryArray[i] = salaryArray[i + 1];
                         birthdayArray[i] = birthdayArray[i + 1];
 
-
                     }
                     String[] tempidArray = new String[size - 1];
                     String[] tempnameArray = new String[size - 1];
                     String[] tempphoneNumberArray = new String[size - 1];
                     String[] tempcompanyNameArray = new String[size - 1];
-                    int[] tempsalaryArray = new int[size - 1];
+                    double[] tempsalaryArray = new double[size - 1];
                     String[] tempbirthdayArray = new String[size - 1];
 
 
@@ -587,8 +675,8 @@ public class iFRIEND {
                     salaryArray = tempsalaryArray;
                     birthdayArray = tempbirthdayArray;
 
-
-                    System.out.print("    Customer has been deleted successfully...");
+                    System.out.println();
+                    System.out.print("       Customer has been deleted successfully...");
                     System.out.println("\n");
                     System.out.print(" Do you want to delete another Contact (Y/N) :");
 
@@ -607,30 +695,29 @@ public class iFRIEND {
                         loadHomepage();
                     }
 
-
                 } else {
                     exitoption1.equalsIgnoreCase("N");
                     clearConsole();
                     loadHomepage();
                 }
             }else {
-                System.out.print("    Customer not in Contact...");
+                System.out.print("    Invalid Name or Phone Number.... ");
                 System.out.println("\n");
                 System.out.print(" Do you want to delete another Contact (Y/N) :");
 
                 String exitoption2 = input.nextLine();
 
                 if (exitoption2.equalsIgnoreCase("Y")) {
-
-                    clearConsole();
-                    deleteContact();
+                    // Move the cursor up five lines
+                    System.out.print("\033[5A");
+                    // Clear the lines
+                    System.out.print("\033[0J");
 
                 } else {
                     exitoption2.equalsIgnoreCase("N");
                     clearConsole();
                     loadHomepage();
                 }
-
 
             }
         }
@@ -645,6 +732,7 @@ public class iFRIEND {
         searchContactTitle();
 
         while (true) {
+            System.out.println();
             System.out.print(" Search Contact by Name or Phone Number -");
             Scanner input = new Scanner(System.in);
             String searchContact = input.nextLine();
@@ -654,8 +742,9 @@ public class iFRIEND {
             int index2 = searchPhoneNumber(searchContact);
 
 
-            int max = 0;
 
+
+            int max = 0;
 
             if (index1 >= 0 || index2 >= 0) {
 
@@ -665,6 +754,7 @@ public class iFRIEND {
                 if (index2 > max) {
                     max = index2;
                 }
+                System.out.println();
 
                 System.out.println("   Contact ID       :" + idArray[max]);
                 System.out.println("   Name             :" + nameArray[max]);
@@ -673,9 +763,9 @@ public class iFRIEND {
                 System.out.println("   Salary           :" + salaryArray[max]);
                 System.out.println("   B'Day(YYYY-MM-DD):" + birthdayArray[max]);
 
+                System.out.println();
 
                 System.out.print(" Do you want to Search another contact (Y/N) :");
-
 
                 String exitoption1 = input.nextLine();
 
@@ -689,6 +779,7 @@ public class iFRIEND {
                     loadHomepage();
                 }
             }else {
+                System.out.println();
                 System.out.print("    No contact found for " +searchContact+"....");
                 System.out.println("\n");
                 System.out.print(" Do you want to Search another contact (Y/N) :");
@@ -705,7 +796,6 @@ public class iFRIEND {
                     clearConsole();
                     loadHomepage();
                 }
-
 
             }
         }
@@ -747,10 +837,10 @@ public class iFRIEND {
                 clearConsole();
                 sortingBirthday();
                 break;
-
+            default:
+                System.out.println("invalid Input , input valid option ");
+                loadHomepage();
         }
-
-
     }
 
 
@@ -758,30 +848,23 @@ public class iFRIEND {
     public static void sortingName() {
         System.out.println();
 
-        System.out.println("                    +------------------------------------+");
-        System.out.println("                    |        List Contact by name        |");
-        System.out.println("                    +------------------------------------+");
-
-        System.out.println("\t");
-
+        System.out.println("                         +------------------------------------+");
+        System.out.println("                         |        List Contact by name        |");
+        System.out.println("                         +------------------------------------+");
 
         String tempnameArray="";
         String tempidArray="";
         String tempphoneNumber="";
         String tempcompanyNameArray="";
-        int tempsalaryArray=0;
+        double tempsalaryArray=0;
         String tempbirthdayArray="";
-
-
-
-
 
         for (int i = 0; i < nameArray.length; i++) {
             for (int j = i + 1; j < nameArray.length; j++) {
 
-                // to compare one string with other strings
+
                 if (nameArray[i].compareTo(nameArray[j]) > 0) {
-                    // swapping
+
                     tempnameArray = nameArray[i];
                     tempidArray=idArray[i];
                     tempphoneNumber=phoneNumberArray[i];
@@ -809,7 +892,7 @@ public class iFRIEND {
             }
         }
 
-        // print output array
+
         System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
         System.out.println();
         System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","| Contact ID |","       Name       |","     Phone Number     |","     Company    |","      Salary     |","      Birthday     |");
@@ -819,7 +902,7 @@ public class iFRIEND {
 
         for (int i = 0; i < nameArray.length; i++) {
 
-            System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i],"|"+birthdayArray[i],"|");
+            System.out.format("%-13s%-19s%-23s%-17s%-18.9s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i]+"0","|"+birthdayArray[i],"|");
             System.out.println();
 
         }
@@ -847,22 +930,16 @@ public class iFRIEND {
     public static void sortingSalary() {
         System.out.println();
 
-        System.out.println("                    +------------------------------------+");
-        System.out.println("                    |      List Contact by Salary        |");
-        System.out.println("                    +------------------------------------+");
-
-        System.out.println("\t");
-
+        System.out.println("                         +------------------------------------+");
+        System.out.println("                         |      List Contact by Salary        |");
+        System.out.println("                         +------------------------------------+");
 
         String tempnameArray="";
         String tempidArray="";
         String tempphoneNumber="";
         String tempcompanyNameArray="";
-        int tempsalaryArray=0;
+        double tempsalaryArray=0;
         String tempbirthdayArray="";
-
-
-
 
 
         for (int i = 0; i < salaryArray.length; i++) {
@@ -898,7 +975,6 @@ public class iFRIEND {
             }
         }
 
-        // print output array
         System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
         System.out.println();
         System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","| Contact ID |","       Name       |","     Phone Number     |","     Company    |","      Salary     |","      Birthday     |");
@@ -908,7 +984,7 @@ public class iFRIEND {
 
         for (int i = 0; i < nameArray.length; i++) {
 
-            System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i],"|"+birthdayArray[i],"|");
+            System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i]+"0","|"+birthdayArray[i],"|");
             System.out.println();
 
         }
@@ -936,30 +1012,22 @@ public class iFRIEND {
     public static void sortingBirthday() {
         System.out.println();
 
-        System.out.println("                    +------------------------------------+");
-        System.out.println("                    |     List Contact by Birthday       |");
-        System.out.println("                    +------------------------------------+");
-
-        System.out.println("\t");
-
+        System.out.println("                        +------------------------------------+");
+        System.out.println("                        |     List Contact by Birthday       |");
+        System.out.println("                        +------------------------------------+");
 
         String tempnameArray="";
         String tempidArray="";
         String tempphoneNumber="";
         String tempcompanyNameArray="";
-        int tempsalaryArray=0;
+        double tempsalaryArray=0;
         String tempbirthdayArray="";
-
-
-
-
 
         for (int i = 0; i < birthdayArray.length; i++) {
             for (int j = i + 1; j < birthdayArray.length; j++) {
 
-                // to compare one string with other strings
                 if ((birthdayArray[i].compareTo(birthdayArray[j]) > 0) ) {
-                    // swapping
+
                     tempnameArray = nameArray[i];
                     tempidArray=idArray[i];
                     tempphoneNumber=phoneNumberArray[i];
@@ -987,7 +1055,6 @@ public class iFRIEND {
             }
         }
 
-        // print output array
         System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
         System.out.println();
         System.out.format("%-14s%-19s%-23s%-17s%-18s%-20s","| Contact ID |","       Name       |","     Phone Number     |","     Company    |","      Salary     |","      Birthday     |");
@@ -997,7 +1064,7 @@ public class iFRIEND {
 
         for (int i = 0; i < nameArray.length; i++) {
 
-            System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i],"|"+birthdayArray[i],"|");
+            System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i]+"0","|"+birthdayArray[i],"|");
             System.out.println();
 
         }
@@ -1020,16 +1087,7 @@ public class iFRIEND {
             clearConsole();
             sortingSalary();
         }
-
-
-
-
-
-
-
     }
-
-
 
     public static int searchPhoneNumber(String searchContact) {
 
@@ -1039,8 +1097,6 @@ public class iFRIEND {
             }
         }
         return -1;
-
-
     }
 
     public static int searchName(String searchContact) {
@@ -1051,9 +1107,6 @@ public class iFRIEND {
         }
         return -1;
     }
-
-
-
 
 
 }
