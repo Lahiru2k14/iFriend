@@ -1,7 +1,6 @@
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
@@ -9,20 +8,13 @@ import static java.lang.System.exit;
 public class iFRIEND {
 
 
-//    public static String[] idArray =new String[0];
-//    public static String[] nameArray =new String[0];
-//    public static String[] phoneNumberArray =new String[0];
-//    public static String[] companyNameArray =new String[0];
-//    public static double[] salaryArray =new double[0];
-//    public static String[] birthdayArray =new String[0];
+    public static String[] idArray =new String[0];
+    public static String[] nameArray =new String[0];
+    public static String[] phoneNumberArray =new String[0];
+    public static String[] companyNameArray =new String[0];
+    public static double[] salaryArray =new double[0];
+    public static String[] birthdayArray =new String[0];
 
-
-    public static String[] idArray ={"C0001","C0002","C0003"};
-    public static String[] nameArray ={"lahiru","niroth","kaushi"};
-    public static String[] phoneNumberArray ={"0717751284","0777751284","0787751284"};
-    public static String[] companyNameArray = {"ICBT","IJSE","ICET"};
-    public static double[] salaryArray = {85000,50000,75000};
-    public static String[] birthdayArray = {"1994-02-14","1991-02-14","1996-02-14"};
 
     public static void main(String[] args) {
 
@@ -169,7 +161,7 @@ public class iFRIEND {
 
         String name = "";
         String companyName = "";
-        int salary = 0;
+        double salary = 0;
         String birthday = "";
         String phoneNumber = "";
 
@@ -199,7 +191,7 @@ public class iFRIEND {
                 L1:
                 while (true) {
                     System.out.print(" Salary              :");
-                    salary = input.nextInt();
+                    salary = input.nextDouble();
 
                     if (salary > 0) {
                         Scanner input2 = new Scanner(System.in);
@@ -217,7 +209,7 @@ public class iFRIEND {
 
                                 if (userDate.compareTo(currentDate) > 0) {
                                     System.out.println();
-                                    System.out.println("         Invalid input....");
+                                    System.out.println("         Invalid Birthday....");
                                     System.out.println();
                                     System.out.print(" Do you want to add birthday again (Y/N) :");
 
@@ -241,17 +233,12 @@ public class iFRIEND {
                                     extendArray();
 
                                     idArray[idArray.length - 1] = String.valueOf(id);
-//                                    System.out.println("id index"+Arrays.toString(idArray));
                                     nameArray[nameArray.length-1]=name;
-//                                    System.out.println("name index"+Arrays.toString(nameArray));
                                     phoneNumberArray[phoneNumberArray.length-1]=phoneNumber;
-//                                    System.out.println("ph num index"+Arrays.toString(phoneNumberArray));
                                     companyNameArray[companyNameArray.length-1]=companyName;
-//                                    System.out.println("c name index"+Arrays.toString(companyNameArray));
                                     salaryArray[salaryArray.length-1]=salary;
-//                                    System.out.println("salary index"+Arrays.toString(salaryArray));
                                     birthdayArray[birthdayArray.length-1]=birthday;
-//                                    System.out.println("birthday index"+Arrays.toString(birthdayArray));
+
 
                                     System.out.println();
 
@@ -270,7 +257,7 @@ public class iFRIEND {
 
                                 } else {
                                     System.out.println();
-                                    System.out.println("         Invalid input....");
+                                    System.out.println("         Invalid Birthday....");
                                     System.out.println();
                                     System.out.print(" Do you want to add birthday again (Y/N) :");
 
@@ -402,10 +389,9 @@ public class iFRIEND {
                 System.out.println("   Name             :" + nameArray[max]);
                 System.out.println("   Phone Number     :" + phoneNumberArray[max]);
                 System.out.println("   Company Name     :" + companyNameArray[max]);
-                System.out.println("   Salary           :" + salaryArray[max]);
+                System.out.printf("   Salary           :" +"%.2f", salaryArray[max]);
+                System.out.println();
                 System.out.println("   B'Day(YYYY-MM-DD):" + birthdayArray[max]);
-
-
 
             System.out.println("\n");
 
@@ -425,7 +411,6 @@ public class iFRIEND {
             // Clear the lines
             System.out.print("\033[0J");
 
-
             while (true) {
 
                 if (num == 1) {
@@ -440,8 +425,6 @@ public class iFRIEND {
                     String newName = input2.nextLine();
 
                     nameArray[max] = newName;
-
-                    System.out.println(Arrays.toString(nameArray));
 
                     System.out.println();
 
@@ -474,7 +457,6 @@ public class iFRIEND {
 
                     phoneNumberArray[max] = newPhoneNumber;
 
-                    System.out.println(Arrays.toString(phoneNumberArray));
                     System.out.println();
 
                     System.out.println("         Contact has been update successfully..");
@@ -506,7 +488,6 @@ public class iFRIEND {
 
                     companyNameArray[max] = newCompanyName;
 
-                    System.out.println(Arrays.toString(companyNameArray));
                     System.out.println();
 
                     System.out.println("      Contact has been update successfully..");
@@ -538,7 +519,7 @@ public class iFRIEND {
 
                     salaryArray[max] = newSalary;
 
-                    System.out.println(Arrays.toString(salaryArray));
+
                     System.out.println();
 
                     System.out.println("     Contact has been update successfully..");
@@ -574,7 +555,7 @@ public class iFRIEND {
 
                 if (exitoption.equalsIgnoreCase("Y")) {
                     // Move the cursor up five lines
-                    System.out.print("\033[8A");
+                    System.out.print("\033[7A");
                     // Clear the lines
                     System.out.print("\033[0J");
 
@@ -628,7 +609,8 @@ public class iFRIEND {
                 System.out.println("   Name             :" + nameArray[max]);
                 System.out.println("   Phone Number     :" + phoneNumberArray[max]);
                 System.out.println("   Company Name     :" + companyNameArray[max]);
-                System.out.println("   Salary           :" + salaryArray[max]);
+                System.out.printf("   Salary           :" +"%.2f", salaryArray[max]);
+                System.out.println();
                 System.out.println("   B'Day(YYYY-MM-DD):" + birthdayArray[max]);
 
                 System.out.println();
@@ -741,9 +723,6 @@ public class iFRIEND {
 
             int index2 = searchPhoneNumber(searchContact);
 
-
-
-
             int max = 0;
 
             if (index1 >= 0 || index2 >= 0) {
@@ -760,7 +739,8 @@ public class iFRIEND {
                 System.out.println("   Name             :" + nameArray[max]);
                 System.out.println("   Phone Number     :" + phoneNumberArray[max]);
                 System.out.println("   Company Name     :" + companyNameArray[max]);
-                System.out.println("   Salary           :" + salaryArray[max]);
+                System.out.printf("   Salary           :" +"%.2f", salaryArray[max]);
+                System.out.println();
                 System.out.println("   B'Day(YYYY-MM-DD):" + birthdayArray[max]);
 
                 System.out.println();
@@ -843,8 +823,6 @@ public class iFRIEND {
         }
     }
 
-
-
     public static void sortingName() {
         System.out.println();
 
@@ -902,7 +880,9 @@ public class iFRIEND {
 
         for (int i = 0; i < nameArray.length; i++) {
 
-            System.out.format("%-13s%-19s%-23s%-17s%-18.9s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i]+"0","|"+birthdayArray[i],"|");
+            System.out.format("%-13s%-19s%-23s%-17s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i]);
+            System.out.printf("|%-17.2f", salaryArray[i]);
+            System.out.format("%-20s%-6s","|"+birthdayArray[i],"|");
             System.out.println();
 
         }
@@ -984,7 +964,9 @@ public class iFRIEND {
 
         for (int i = 0; i < nameArray.length; i++) {
 
-            System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i]+"0","|"+birthdayArray[i],"|");
+            System.out.format("%-13s%-19s%-23s%-17s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i]);
+            System.out.printf("|%-17.2f", salaryArray[i]);
+            System.out.format("%-20s%-6s","|"+birthdayArray[i],"|");
             System.out.println();
 
         }
@@ -1064,8 +1046,11 @@ public class iFRIEND {
 
         for (int i = 0; i < nameArray.length; i++) {
 
-            System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s%-6s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i],"|"+salaryArray[i]+"0","|"+birthdayArray[i],"|");
+            System.out.format("%-13s%-19s%-23s%-17s","|"+idArray[i],"|"+nameArray[i],"|"+phoneNumberArray[i],"|"+companyNameArray[i]);
+            System.out.printf("|%-17.2f", salaryArray[i]);
+            System.out.format("%-20s%-6s","|"+birthdayArray[i],"|");
             System.out.println();
+
 
         }
         System.out.format("%-13s%-19s%-23s%-17s%-18s%-20s","+------------+","------------------+","----------------------+","----------------+","-----------------+","-------------------+");
